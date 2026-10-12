@@ -1,0 +1,60 @@
+{
+  "name": "project-aether",
+  "version": "0.1.0",
+  "description": "Prototype semantic review queue for agent-authored changes using Cloudflare Workers and Artifacts",
+  "main": "src/ingress.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "setup": "tsx scripts/setup.ts",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx tests/semantic_analyzer.test.ts && tsx tests/multi_agent_concurrency.test.ts && tsx tests/security_critical_path.test.ts && tsx tests/artifacts_queue.test.ts && tsx scripts/local_git_mechanics_check.ts && tsx tests/property_inversion.test.ts && tsx tests/concurrent_move.test.ts && tsx tests/dedupe_adversarial.test.ts && tsx tests/symbol_conflict.test.ts && tsx tests/multi_file_and_polyglot.test.ts && tsx tests/mcp_and_dag_concurrency.test.ts && tsx tests/differential_typecheck.test.ts && tsx tests/ast_composer.test.ts && tsx tests/policy_and_provenance.test.ts && tsx tests/collision_radar.test.ts && tsx tests/semantic_rebase_probe.test.ts && tsx tests/agent_repair.test.ts",
+    "test:repair": "tsx tests/agent_repair.test.ts",
+    "test:ast": "tsx tests/semantic_analyzer.test.ts",
+    "test:multiagent": "tsx tests/multi_agent_concurrency.test.ts",
+    "test:security": "tsx tests/security_critical_path.test.ts",
+    "test:queue": "tsx tests/artifacts_queue.test.ts",
+    "test:git-mechanics": "tsx scripts/local_git_mechanics_check.ts",
+    "test:inversion": "tsx tests/property_inversion.test.ts",
+    "test:moves": "tsx tests/concurrent_move.test.ts",
+    "test:dedupe": "tsx tests/dedupe_adversarial.test.ts",
+    "test:symbols": "tsx tests/symbol_conflict.test.ts",
+    "test:multifile": "tsx tests/multi_file_and_polyglot.test.ts",
+    "test:mcp": "tsx tests/mcp_and_dag_concurrency.test.ts",
+    "test:differential": "tsx tests/differential_typecheck.test.ts",
+    "test:composer": "tsx tests/ast_composer.test.ts",
+    "test:policy": "tsx tests/policy_and_provenance.test.ts",
+    "test:radar": "tsx tests/collision_radar.test.ts",
+    "test:rebase": "tsx tests/semantic_rebase_probe.test.ts",
+    "test:corpus": "tsx benchmark/run_corpus_benchmark.ts",
+    "demo": "tsx src/cli.ts",
+    "bench": "tsx benchmark/macro_bench.ts",
+    "bench:swarm": "tsx benchmark/live_swarm_bench.ts"
+  },
+  "keywords": [
+    "crdt",
+    "ast",
+    "cloudflare-workers",
+    "durable-objects",
+    "ai-agents",
+    "vectorize"
+  ],
+  "author": "Project Aether Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "dependencies": {
+    "cbor-x": "^1.6.0",
+    "isomorphic-git": "^1.42.6",
+    "web-tree-sitter": "^0.24.4"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241004.0",
+    "@types/node": "^22.7.4",
+    "tree-sitter-wasms": "^0.1.13",
+    "tsx": "^4.23.15",
+    "typescript": "^5.6.2",
+    "wrangler": "^4.147.0"
+  }
+}

@@ -1,0 +1,36 @@
+name = "project-aether-edge-mesh"
+main = "src/ingress.ts"
+compatibility_date = "2024-10-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+AETHER_AUTH_SECRET = "aether-development-cluster-secret-32-chars-long"
+
+[placement]
+mode = "smart"
+
+[durable_objects]
+bindings = [
+  { name = "MODULE_SHARD_DO", class_name = "ASTMeshShard" },
+  { name = "MESH_COORDINATOR_DO", class_name = "MeshCoordinator" }
+]
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["ASTMeshShard", "MeshCoordinator"]
+
+[ai]
+binding = "AI"
+
+[[vectorize]]
+binding = "SEMANTIC_INDEX"
+index_name = "aether-ast-embeddings-prod"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+[[queues.consumers]]
+queue = "artifacts-events"
+max_batch_size = 10
+max_batch_timeout = 5
